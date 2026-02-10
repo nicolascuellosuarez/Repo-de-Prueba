@@ -3,7 +3,7 @@ class Pizza:
         self.ingredientes: list[str] = ingredientes
 
     """
-    Factor g
+    Factory o Fábrica, Patrón de diseño
     """
 
     @classmethod
