@@ -22,6 +22,18 @@ class PagoTarjeta(MetodoPago):
     def procesar_pago(self, monto: float) -> None:
         print(f"Pago con Tarjeta {self.tarjeta} hecho por ${monto}")
 
+"""
+Implementación de la clase de pagos con BitCoin 
+"""
+
+class PagoBitcoin(MetodoPago):
+    def __init__(self, direccion_publica: str) -> None:
+        self.direccion_publica: str = direccion_publica
+
+    def procesar_pago(self, monto: float) -> None:
+        print(f"Pago con dirección pública {self.direccion_publica} hecho por ${monto}")
+        
+
 class Procesador:
     def __init__(self, pagos: list[MetodoPago]) -> None:
         self.pagos: list[MetodoPago] = pagos
@@ -42,8 +54,6 @@ class Pizza:
     def crear_hawaiana(cls) -> 'Pizza':
         return cls(["Queso", "Piña, Jamón"])
     
-
-    
 def main():
     pizza_1 = Pizza(["Chicharrón", "Queso", "Pepperoni"])
     pizza_hawaiana = Pizza.crear_hawaiana()
@@ -52,10 +62,15 @@ def main():
 
     paypal_1 = PagoPaypal("jaimecuellosuarez@gmail.com")
     tarjeta_1 = PagoTarjeta("1234 4567 1235")
+    direccion_1 = PagoBitcoin("bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh")
 
     paypal_1.procesar_pago(300)
     paypal_1.mensaje_transaccion()
-    procesador = Procesador([paypal_1, tarjeta_1])
+    
+    direccion_1.procesar_pago(0.3)
+    direccion_1.mensaje_transaccion
+
+    procesador = Procesador([paypal_1, tarjeta_1, direccion_1])
     procesador.procesar_pagos()
 
 if __name__ == "__main__":
